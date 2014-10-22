@@ -36,9 +36,11 @@ var PageLoader = React.createClass({displayName: 'PageLoader',
   animate: function() {
       var that = this, animationTimer;
       animationTimer = setTimeout(function() {
-        if (!that.state.inAnimation)  {
-          return;
-        }
+          var  newLeft;
+          if (!that.state.inAnimation)  {
+            return;
+          }
+
           if (that.state.loaderLeft < 0){
               that.state.animationId = window.requestAnimationFrame(that.animate);
           } else {
@@ -51,7 +53,12 @@ var PageLoader = React.createClass({displayName: 'PageLoader',
           }
 
           that.state.pos += 1 + that.state.pos / 2;
-          that.setState({loaderLeft: that.state.loaderLeft + that.state.pos});
+          newLeft = that.state.loaderLeft + that.state.pos;
+          if (newLeft > 0)  {
+              newLeft = 0;
+          }
+
+          that.setState({loaderLeft: newLeft});
       }, 1000 / 60);
   },
 
