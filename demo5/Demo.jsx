@@ -38,6 +38,8 @@ const Demo = React.createClass({
     if (isPressed) {
       this.setState({mouse: [touchOrMousePageX - dx, touchOrMousePageY - dy]});
     }
+
+    e.stopPropagation();
   },
 
   handleMouseUp() {
