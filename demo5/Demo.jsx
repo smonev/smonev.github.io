@@ -38,16 +38,15 @@ const Demo = React.createClass({
     if (isPressed) {
       this.setState({mouse: [touchOrMousePageX - dx, touchOrMousePageY - dy]});
     }
-
-    e.stopPropagation();
   },
 
-  handleMouseUp() {
+  handleMouseUp(e) {
     this.setState({
       isPressed: false,
       delta: [0, 0],
       slider: {dragged: null, num: 0},
     });
+    e.stopPropagation();
   },
 
   //
